@@ -1,0 +1,141 @@
+/* Ajustes visuales de la experiencia JNSTUDIO. */
+.music-note {
+  z-index: 0;
+  opacity: .34;
+  font-size: 20px;
+  text-shadow: 0 0 12px var(--coral), 0 0 28px rgba(169, 77, 87, .65);
+  pointer-events: none;
+}
+
+.about-page {
+  max-width: 1320px;
+}
+
+.about-intro {
+  display: grid;
+  grid-template-columns: 1fr .82fr;
+  gap: 9vw;
+  align-items: center;
+}
+
+.about-lead {
+  color: var(--paper) !important;
+  font-size: 18px !important;
+  line-height: 1.6 !important;
+}
+
+.about-intro .story-visual {
+  min-height: 620px;
+  position: relative;
+}
+
+.about-intro .story-visual .visual-label {
+  bottom: 24px;
+}
+
+.about-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  margin-top: 80px;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+
+.about-stats div {
+  display: flex;
+  align-items: baseline;
+  gap: 18px;
+  padding: 28px 0;
+  border-right: 1px solid var(--line);
+}
+
+.about-stats div:last-child {
+  border-right: 0;
+}
+
+.about-stats strong {
+  color: var(--coral);
+  font: 500 32px 'Space Grotesk', sans-serif;
+}
+
+.about-stats span {
+  color: var(--muted);
+  font: 11px 'DM Mono', monospace;
+  line-height: 1.5;
+  text-transform: uppercase;
+}
+
+.about-values {
+  display: grid;
+  grid-template-columns: .7fr 1.3fr;
+  gap: 10vw;
+  margin-top: 110px;
+}
+
+.about-values > div:first-child h3 {
+  font-size: 38px;
+  line-height: 1;
+}
+
+.about-values h3 em {
+  color: var(--coral);
+  font-style: normal;
+}
+
+.value-list {
+  border-top: 1px solid var(--line);
+}
+
+.value-list article {
+  display: grid;
+  grid-template-columns: 45px 1fr;
+  gap: 18px;
+  padding: 25px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.value-list article > span {
+  color: var(--coral);
+  font: 11px 'DM Mono', monospace;
+}
+
+.value-list h3 {
+  margin: 0 0 8px;
+  font-size: 20px;
+}
+
+.value-list p {
+  max-width: 530px;
+  margin: 0;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+@media (max-width: 850px) {
+  .about-intro,
+  .about-values {
+    grid-template-columns: 1fr;
+    gap: 45px;
+  }
+
+  .about-intro .story-visual {
+    min-height: 420px;
+  }
+}
+
+@media (max-width: 520px) {
+  .about-stats {
+    grid-template-columns: 1fr;
+  }
+
+  .about-stats div {
+    border-right: 0;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .about-stats div:last-child {
+    border-bottom: 0;
+  }
+}
