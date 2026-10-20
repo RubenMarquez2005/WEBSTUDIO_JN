@@ -1,0 +1,26 @@
+---
+import { tariffs } from '../data/site';
+---
+<div class="tariff-controls">
+  <label for="tariff-filter">Ver tarifas por área</label>
+  <select id="tariff-filter">
+    <option value="todas">Todas las áreas</option>
+    <option value="musica">Música y producción</option>
+    <option value="web">Desarrollo web</option>
+    <option value="grabacion">Grabación</option>
+    <option value="consultoria">Consultoría</option>
+  </select>
+</div>
+<div class="price-grid" id="tariff-grid">
+  {tariffs.map((tariff, index) => <article class="price-card" data-category={tariff.category}>
+    <span class="service-number">{String(index + 1).padStart(2, '0')} / {tariff.area}</span>
+    <h3>{tariff.name}</h3>
+    <p>{tariff.description}</p>
+    <div class="price">{tariff.price}</div>
+    <a class="button button-ghost" href="/contacto/">Solicitar información <span>↗</span></a>
+  </article>)}
+</div>
+<script>
+  const filter = document.querySelector<HTMLSelectElement>('#tariff-filter');
+  filter?.addEventListener('change', () => document.querySelectorAll<HTMLElement>('[data-category]').forEach((card) => { card.style.display = filter.value === 'todas' || card.dataset.category === filter.value ? '' : 'none'; }));
+</script>
