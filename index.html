@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="WEB JAVI: producción musical, ingeniería de sonido y desarrollo creativo para artistas.">
+  <title>WEB JAVI | Producción musical</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="ambient ambient-one"></div><div class="ambient ambient-two"></div><div id="music-field" aria-hidden="true"></div>
+  <header class="site-header"><a class="brand" href="#inicio" aria-label="WEB JAVI, página de inicio"><span class="brand-mark">WJ</span><span>WEB <b>JAVI</b></span></a><nav class="main-nav" aria-label="Navegación principal"><a href="#inicio" data-route="inicio">Inicio</a><a href="#estudio" data-route="estudio">Estudio</a><a href="#servicios" data-route="servicios">Servicios</a><a href="#tarifas" data-route="tarifas">Tarifas</a><a href="#nosotros" data-route="nosotros">Nosotros</a><a href="#contacto" data-route="contacto">Contacto</a></nav><div class="header-actions"><a class="social-link" href="https://instagram.com" target="_blank" rel="noreferrer" aria-label="Instagram">ig</a><a class="social-link" href="https://youtube.com" target="_blank" rel="noreferrer" aria-label="YouTube">yt</a><button class="cart-button" id="cart-button" aria-label="Abrir carrito">Carrito <span id="cart-count">0</span></button><button class="menu-toggle" id="menu-toggle" aria-label="Abrir menú">☰</button></div></header>
+  <main id="app"></main>
+  <footer class="site-footer"><div class="footer-top"><div><a class="brand footer-brand" href="#inicio"><span class="brand-mark">WJ</span><span>WEB <b>JAVI</b></span></a><p class="footer-intro">Ideas que suenan. Historias que permanecen.</p></div><div><p class="footer-label">Explora</p><a href="#estudio">El estudio</a><a href="#servicios">Servicios</a><a href="#tarifas">Tarifas</a></div><div><p class="footer-label">Contacto</p><button class="email-copy" id="email-copy">hola@webjavi.com <span>Copiar</span></button><a href="#contacto">Abrir conversación</a></div><div><p class="footer-label">Síguenos</p><div class="footer-socials"><a href="https://instagram.com" target="_blank" rel="noreferrer">Instagram</a><a href="https://youtube.com" target="_blank" rel="noreferrer">YouTube</a></div></div></div><div class="footer-bottom"><span>© 2026 WEB JAVI. Todos los derechos reservados.</span><a href="#privacidad">Privacidad</a><span>Madrid / Online</span></div></footer>
+  <div class="toast" id="toast" role="status"></div><div class="cursor-glow" id="cursor-glow" aria-hidden="true"></div><div class="modal-backdrop" id="cart-modal" aria-hidden="true"><section class="cart-modal" role="dialog" aria-modal="true" aria-labelledby="cart-title"><button class="modal-close" id="close-cart" aria-label="Cerrar carrito">×</button><p class="eyebrow">Tu selección</p><h2 id="cart-title">Carrito <span id="cart-total-items">(0)</span></h2><div id="cart-items"></div><div class="cart-summary"><span>Total</span><strong id="cart-total">0 €</strong></div><button class="button button-primary full-width" id="checkout-button">Continuar al pago <span>↗</span></button></section></div>
+  <script src="script.js"></script>
+</body>
+</html>
