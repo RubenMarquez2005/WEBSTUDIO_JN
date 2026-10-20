@@ -1,6 +1,6 @@
-# WEB JAVI
+# JNSTUDIO
 
-Web oficial de WEB JAVI, estudio de producción musical, ingeniería de sonido y desarrollo creativo.
+Web oficial de JNSTUDIO, estudio de producción musical, ingeniería de sonido y desarrollo creativo.
 
 ## Estado del proyecto
 
@@ -19,7 +19,7 @@ Después abre `http://localhost:8000` en el navegador.
 ## Pendiente
 
 - Sustituir las imágenes provisionales por fotografías definitivas del estudio y del equipo.
-- Conectar el formulario a un servicio de correo real con destinatarios, copias ocultas y protección antispam.
+- Conectar el formulario a un servicio de correo real con destinatarios, copias ocultas y protección antispam. La marca para la copia interna será JNSTUDIO; faltan las direcciones reales de los responsables.
 - Integrar una pasarela real de pago y generación de facturas.
-- Completar las tarifas del resto de servicios cuando WEB JAVI las facilite.
+- Completar las tarifas del resto de servicios cuando JNSTUDIO las facilite.
 - Revisar los textos legales antes de publicar.
