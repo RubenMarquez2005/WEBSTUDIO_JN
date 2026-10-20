@@ -1,5 +1,6 @@
 ---
 import { navigation, site } from '../data/site';
+import SocialIcon from '../components/SocialIcon.astro';
 import '../../styles.css';
 import '../../styles-overrides.css';
 
@@ -25,9 +26,9 @@ const currentPath = Astro.url.pathname;
         {navigation.map((item) => <a class:list={{ active: currentPath === item.href }} href={item.href}>{item.label}</a>)}
       </nav>
       <div class="header-actions">
-        <a class="social-link" href={site.instagram} target="_blank" rel="noreferrer" aria-label="Instagram">ig</a>
-        <a class="social-link" href={site.tiktok} target="_blank" rel="noreferrer" aria-label="TikTok">tk</a>
-        <a class="social-link" href={site.youtube} target="_blank" rel="noreferrer" aria-label="YouTube">yt</a>
+        <SocialIcon network="instagram" href={site.instagram} label="Instagram" />
+        <SocialIcon network="tiktok" href={site.tiktok} label="TikTok" />
+        <SocialIcon network="youtube" href={site.youtube} label="YouTube" />
         <button class="menu-toggle" id="menu-toggle" aria-label="Abrir menú">☰</button>
       </div>
     </header>
@@ -37,7 +38,7 @@ const currentPath = Astro.url.pathname;
         <div><a class="brand footer-brand" href="/"><span class="brand-mark">JN</span><span><b>JN</b>STUDIO</span></a><p class="footer-intro">Ideas que suenan. Historias que permanecen.</p></div>
         <div><p class="footer-label">Explora</p>{navigation.slice(1, 4).map((item) => <a href={item.href}>{item.label}</a>)}</div>
         <div><p class="footer-label">Contacto</p><a href={`mailto:${site.contactEmail}`}>{site.contactEmail}</a><a href="/contacto/">Abrir conversación</a></div>
-        <div><p class="footer-label">Síguenos</p><div class="footer-socials"><a href={site.instagram} target="_blank" rel="noreferrer">Instagram</a><a href={site.tiktok} target="_blank" rel="noreferrer">TikTok</a><a href={site.facebook} target="_blank" rel="noreferrer">Facebook</a><a href={site.portfolio} target="_blank" rel="noreferrer">Portfolio</a></div></div>
+        <div><p class="footer-label">Síguenos</p><div class="footer-socials"><SocialIcon network="instagram" href={site.instagram} label="Instagram" /><SocialIcon network="tiktok" href={site.tiktok} label="TikTok" /><SocialIcon network="facebook" href={site.facebook} label="Facebook" /><SocialIcon network="youtube" href={site.youtube} label="YouTube" /><a href={site.portfolio} target="_blank" rel="noreferrer">Portfolio</a></div></div>
       </div>
       <div class="footer-bottom"><span>© 2026 JNSTUDIO. Todos los derechos reservados.</span><a href="/privacidad/">Privacidad</a><span>Madrid / Online</span></div>
     </footer>
