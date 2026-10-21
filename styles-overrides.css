@@ -506,6 +506,239 @@ main,
   font: 12px 'DM Mono', monospace;
 }
 
+.tariffs-page {
+  max-width: 1320px;
+}
+
+.tariffs-hero {
+  max-width: 760px;
+  padding-bottom: 85px;
+}
+
+.tariffs-lead {
+  max-width: 510px;
+  margin: 28px 0 0 8vw;
+  color: var(--muted);
+  font-size: 16px;
+  line-height: 1.7;
+}
+
+.services-pricing {
+  padding-top: 60px;
+  border-top: 1px solid var(--line);
+}
+
+.services-pricing .section-heading h3,
+.promotions-heading h3 {
+  font-size: 42px;
+  line-height: .98;
+}
+
+.services-pricing .section-heading h3 em,
+.promotions-heading h3 em {
+  color: var(--coral);
+  font-style: normal;
+}
+
+.promotions-section {
+  margin-top: 110px;
+  padding-top: 65px;
+  border-top: 1px solid var(--line);
+}
+
+.promotions-heading {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  margin-bottom: 35px;
+}
+
+.promotion-index {
+  color: var(--muted);
+  font: 11px 'DM Mono', monospace;
+}
+
+.featured-promotion {
+  display: grid;
+  grid-template-columns: 1.35fr .65fr;
+  min-height: 420px;
+  border: 1px solid var(--coral);
+  background: linear-gradient(120deg, rgba(135, 59, 67, .34), rgba(25, 25, 29, .82));
+  box-shadow: 0 18px 60px rgba(135, 59, 67, .16);
+}
+
+.promotion-copy {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 48px;
+}
+
+.promotion-badge {
+  align-self: start;
+  margin-bottom: 25px;
+  padding: 7px 10px;
+  border: 1px solid rgba(234, 231, 229, .28);
+  color: var(--paper);
+  font: 10px 'DM Mono', monospace;
+  letter-spacing: .12em;
+}
+
+.promotion-copy h3 {
+  font-size: clamp(38px, 5vw, 70px);
+  line-height: .92;
+}
+
+.promotion-copy h3 em {
+  color: var(--coral);
+  font-style: normal;
+}
+
+.promotion-copy > p {
+  max-width: 500px;
+  margin: 28px 0 0;
+  color: var(--muted);
+  line-height: 1.7;
+}
+
+.promotion-includes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 28px;
+}
+
+.promotion-includes span {
+  padding: 8px 10px;
+  background: rgba(13, 13, 15, .35);
+  color: var(--paper);
+  font: 10px 'DM Mono', monospace;
+}
+
+.promotion-offer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 42px 35px;
+  border-left: 1px solid rgba(234, 231, 229, .18);
+  background: rgba(13, 13, 15, .28);
+}
+
+.promotion-offer p,
+.promotion-offer .promotion-label,
+.promotion-offer small {
+  margin: 0;
+  color: var(--muted);
+  font: 10px 'DM Mono', monospace;
+  text-transform: uppercase;
+}
+
+.promotion-offer s {
+  margin: 7px 0 32px;
+  color: var(--muted);
+  font: 25px 'Space Grotesk', sans-serif;
+}
+
+.promotion-offer strong {
+  margin: 5px 0 2px;
+  color: var(--paper);
+  font: 700 clamp(48px, 5vw, 72px) 'Space Grotesk', sans-serif;
+  line-height: .9;
+}
+
+.promotion-offer small {
+  color: var(--coral);
+}
+
+.promotion-offer .button {
+  width: 100%;
+  margin-top: 28px;
+}
+
+.promotion-offer > a {
+  margin-top: 17px;
+  color: var(--muted);
+  font: 10px 'DM Mono', monospace;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.next-promotions {
+  display: grid;
+  grid-template-columns: .6fr 1.4fr;
+  gap: 8vw;
+  margin-top: 55px;
+  padding: 28px 0;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+
+.next-promotions h3 {
+  margin-bottom: 10px;
+  font-size: 24px;
+}
+
+.next-promotions p:not(.eyebrow) {
+  max-width: 620px;
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.6;
+  font-size: 13px;
+}
+
+.next-promotions span {
+  display: inline-block;
+  margin-top: 15px;
+  color: var(--coral);
+  font: 10px 'DM Mono', monospace;
+  text-transform: uppercase;
+}
+
+@media (max-width: 850px) {
+  .tariffs-lead {
+    margin-left: 0;
+  }
+
+  .featured-promotion {
+    grid-template-columns: 1fr;
+  }
+
+  .promotion-offer {
+    border-top: 1px solid rgba(234, 231, 229, .18);
+    border-left: 0;
+  }
+
+  .next-promotions {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+}
+
+@media (max-width: 520px) {
+  .tariffs-hero {
+    padding-bottom: 55px;
+  }
+
+  .services-pricing .section-heading h3,
+  .promotions-heading h3 {
+    font-size: 34px;
+  }
+
+  .promotion-copy,
+  .promotion-offer {
+    padding: 28px 22px;
+  }
+
+  .promotions-heading {
+    display: block;
+  }
+
+  .promotion-index {
+    display: inline-block;
+    margin-top: 18px;
+  }
+}
+
 .cart-item {
   display: flex;
   align-items: center;

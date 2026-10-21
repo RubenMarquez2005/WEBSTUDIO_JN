@@ -2,4 +2,24 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import TariffGrid from '../components/TariffGrid.astro';
 ---
-<BaseLayout title="JNSTUDIO | Tarifas"><section class="page reveal"><p class="eyebrow">JNSTUDIO / Inversión</p><h2>Tu próximo paso,<br><em>con números claros.</em></h2><div class="section-heading"><span class="kicker">Tarifas por área</span><p>Selecciona una de las tres áreas y revisa cada servicio por separado. Después puedes añadir una tarifa o una promoción a tu contratación.</p></div><TariffGrid /><section class="promo-panel music-promo"><div><p class="eyebrow">Promoción Música y producción</p><h3>El pack completo<br><em>para llevar tu canción más lejos.</em></h3><p class="promo-intro">Producción Musical + Mezcla y Mastering + Composición Musical + Sesión de grabación de estudio.</p></div><div class="promo-points"><p class="promo-old-price"><span>Precio por separado</span><s>1.340€</s></p><p class="promo-final"><span>Pack promocional</span><strong>425€</strong><small>IVA incluido</small></p><button class="button button-primary" type="button" data-add-cart data-name="Pack Música y producción" data-price="425" data-category="musica">Añadir pack al carrito <span>+</span></button><a class="promo-terms" href="/contacto/">Consultar condiciones de la promoción ↗</a></div></section><section class="promo-coming"><p class="eyebrow">Próximas promociones</p><h3>Cuando me pases los precios de Desarrollo web e Informática, crearemos packs como:</h3><div class="promo-example"><strong>Portfolio profesional</strong><span>Web personal + diseño visual + estructura de contenidos + puesta a punto para presentar tu música.</span><b>A consultar</b></div></section></section></BaseLayout>
+<BaseLayout title="JNSTUDIO | Tarifas">
+  <section class="page reveal tariffs-page">
+    <div class="tariffs-hero">
+      <p class="eyebrow">JNSTUDIO / Inversión</p>
+      <h2>Invierte en algo<br><em>que suene a ti.</em></h2>
+      <p class="tariffs-lead">Servicios claros para construir tu proyecto por partes. Promociones especiales para cuando quieres dar el siguiente paso completo.</p>
+    </div>
+    <section class="services-pricing">
+      <div class="section-heading"><div><p class="eyebrow">Servicios y tarifas</p><h3>Elige exactamente<br><em>lo que necesitas.</em></h3></div><p>Filtra por área, consulta qué incluye cada servicio y añádelo a tu selección. Las promociones viven en su propia sección.</p></div>
+      <TariffGrid />
+    </section>
+    <section class="promotions-section" aria-labelledby="promotions-title">
+      <div class="promotions-heading"><div><p class="eyebrow">Promociones JNSTUDIO</p><h3 id="promotions-title">Cuando quieres<br><em>hacerlo completo.</em></h3></div><span class="promotion-index">01 / 01</span></div>
+      <article class="featured-promotion">
+        <div class="promotion-copy"><span class="promotion-badge">PACK MÚSICA Y PRODUCCIÓN</span><h3>Tu canción.<br><em>De la idea al lanzamiento.</em></h3><p>Producción Musical, Mezcla y Mastering, Composición Musical y Sesión de grabación de estudio reunidos en una única experiencia de trabajo.</p><div class="promotion-includes"><span>Producción</span><span>Composición</span><span>Mezcla y master</span><span>Sesión de estudio</span></div></div>
+        <div class="promotion-offer"><p>Precio por separado</p><s>1.340€</s><span class="promotion-label">Precio especial</span><strong>545€</strong><small>IVA incluido</small><button class="button button-primary" type="button" data-add-cart data-name="Pack Música y producción" data-price="545" data-category="musica">Añadir promoción al carrito <span>+</span></button><a href="/contacto/">Quiero conocer las condiciones ↗</a></div>
+      </article>
+      <div class="next-promotions"><p class="eyebrow">Siguiente lanzamiento</p><div><h3>Portfolio profesional para artistas</h3><p>Un pack de desarrollo web e informática con web personal, identidad visual, contenidos y presencia digital. Lo activaremos cuando definamos sus precios.</p><span>A consultar · Próximamente</span></div></div>
+    </section>
+  </section>
+</BaseLayout>
