@@ -37,7 +37,7 @@ const currentPath = Astro.url.pathname;
         <SocialIcon network="instagram" href={site.instagram} label="Instagram" />
         <SocialIcon network="tiktok" href={site.tiktok} label="TikTok" />
         <SocialIcon network="youtube" href={site.youtube} label="YouTube" />
-        <button class="cart-trigger" id="cart-trigger" type="button" aria-label="Abrir carrito"><span aria-hidden="true">▣</span> Carrito <b id="cart-count">0</b></button>
+        <button class="cart-trigger" id="cart-trigger" type="button" aria-label="Abrir carrito" title="Abrir carrito"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h2l2 11h9l2-8H7"/><circle cx="10" cy="20" r="1"/><circle cx="17" cy="20" r="1"/></svg><b id="cart-count">0</b></button>
         <button class="menu-toggle" id="menu-toggle" aria-label="Abrir menú">☰</button>
       </div>
     </header>
@@ -56,7 +56,11 @@ const currentPath = Astro.url.pathname;
       <div class="cart-drawer-head"><div><p class="eyebrow">Tu selección</p><h2 id="cart-title">Carrito</h2></div><button class="cart-close" id="cart-close" type="button" aria-label="Cerrar carrito">×</button></div>
       <div id="cart-items"><p class="cart-empty">Todavía no has añadido ningún servicio.</p></div>
       <div class="cart-total"><span>Total</span><strong id="cart-total">0€</strong></div>
-      <a class="button button-primary full-width" href="/contacto/">Solicitar contratación <span>↗</span></a>
+      <label class="cart-observation-label" for="cart-observation">Indicaciones para tu proyecto</label>
+      <textarea class="cart-observation" id="cart-observation" placeholder="Cuéntanos cómo quieres tu producción, referencias o necesidades..."></textarea>
+      <button class="button button-primary full-width" id="cart-contract" type="button">Revisar contratación <span>↗</span></button>
+      <button class="button button-ghost full-width payment-pending" id="cart-payment" type="button" disabled aria-disabled="true">Pago seguro próximamente <span>🔒</span></button>
+      <p class="payment-note">El pago online se activará al conectar Stripe. Primero revisamos tu pedido y disponibilidad.</p>
     </aside>
     <div class="cart-backdrop" id="cart-backdrop"></div>
     <div class="cursor-glow" id="cursor-glow" aria-hidden="true"></div>
@@ -71,6 +75,7 @@ const currentPath = Astro.url.pathname;
       const closeCart = () => { cartDrawer?.classList.remove('open'); cartBackdrop?.classList.remove('open'); cartDrawer?.setAttribute('aria-hidden', 'true'); };
       const updateCartCount = () => { const counter = document.querySelector('#cart-count'); if (counter) counter.textContent = String(cartItems.length); };
       document.querySelector('#cart-trigger')?.addEventListener('click', openCart);
+      document.querySelector('#cart-contract')?.addEventListener('click', () => { const observation = document.querySelector('#cart-observation'); localStorage.setItem('jnstudio-cart-observation', observation?.value || ''); window.location.href = '/contacto/'; });
       document.querySelector('#cart-close')?.addEventListener('click', closeCart); cartBackdrop?.addEventListener('click', closeCart);
       document.addEventListener('click', (event) => { const button = event.target.closest('[data-add-cart]'); if (!button) return; cartItems.push({ name: button.dataset.name, price: Number(button.dataset.price || 0), category: button.dataset.category || 'general' }); localStorage.setItem('jnstudio-cart', JSON.stringify(cartItems)); updateCartCount(); openCart(); });
       updateCartCount();

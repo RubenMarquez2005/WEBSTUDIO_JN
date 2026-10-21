@@ -38,7 +38,10 @@ import { site } from '../data/site';
     const replyTo = document.querySelector<HTMLInputElement>('#replyto');
     const cartPayload = document.querySelector<HTMLInputElement>('#cart-payload');
     const selectedServices = document.querySelector<HTMLElement>('#selected-services');
+    const messageField = document.querySelector<HTMLTextAreaElement>('#message');
     const selectedCart = JSON.parse(localStorage.getItem('jnstudio-cart') || '[]');
+    const cartObservation = localStorage.getItem('jnstudio-cart-observation') || '';
+    if (messageField && cartObservation) messageField.value = cartObservation;
     if (selectedCart.length && cartPayload && selectedServices) {
       cartPayload.value = JSON.stringify(selectedCart);
       selectedServices.hidden = false;
@@ -58,6 +61,8 @@ import { site } from '../data/site';
         });
         if (!response.ok) throw new Error('No se pudo enviar el formulario');
         contactForm.reset();
+        localStorage.removeItem('jnstudio-cart');
+        localStorage.removeItem('jnstudio-cart-observation');
         contactStatus.textContent = 'Mensaje enviado. Te responderemos pronto.';
       } catch {
         contactStatus.textContent = 'No se ha podido enviar ahora. Escríbenos a oficinajaviernaranjo@gmail.com.';

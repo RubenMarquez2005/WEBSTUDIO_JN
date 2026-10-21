@@ -208,27 +208,36 @@ main,
 }
 
 .cart-trigger {
-  display: inline-flex;
-  align-items: center;
-  gap: 7px;
-  padding: 8px 0 8px 16px;
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  padding: 0;
   border: 0;
-  border-left: 1px solid var(--line);
   background: transparent;
   color: var(--paper);
-  font-size: 12px;
 }
 
-.cart-trigger > span {
-  color: var(--coral);
+.cart-trigger svg {
+  width: 21px;
+  height: 21px;
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.7;
 }
 
 .cart-trigger b {
+  position: absolute;
+  top: -4px;
+  right: -5px;
   display: grid;
   place-items: center;
-  min-width: 19px;
-  height: 19px;
-  padding: 0 5px;
+  min-width: 17px;
+  height: 17px;
+  padding: 0 4px;
   border-radius: 50%;
   background: var(--coral);
   color: var(--paper);
@@ -237,6 +246,44 @@ main,
 
 .cart-trigger:hover {
   color: var(--coral);
+}
+
+.cart-observation-label {
+  display: block;
+  margin: 28px 0 8px;
+  color: var(--muted);
+  font: 10px 'DM Mono', monospace;
+  text-transform: uppercase;
+}
+
+.cart-observation {
+  display: block;
+  width: 100%;
+  min-height: 90px;
+  padding: 12px;
+  resize: vertical;
+  border: 1px solid var(--line);
+  background: rgba(13, 13, 15, .4);
+  color: var(--paper);
+  font: 13px Manrope, sans-serif;
+}
+
+.cart-observation:focus {
+  outline: 1px solid var(--coral);
+  border-color: var(--coral);
+}
+
+.payment-pending {
+  margin-top: 10px;
+  opacity: .52;
+  cursor: not-allowed;
+}
+
+.payment-note {
+  margin: 12px 0 0;
+  color: var(--muted);
+  font-size: 11px;
+  line-height: 1.5;
 }
 
 .selected-services {
@@ -390,23 +437,12 @@ main,
     display: none;
   }
 
-  .cart-trigger {
-    margin-left: auto;
-  }
+  .cart-trigger { margin-left: auto; }
 
   .menu-toggle {
     display: block;
   }
 
-  .cart-trigger {
-    font-size: 0;
-    border-left: 0;
-    padding-left: 0;
-  }
-
-  .cart-trigger > span {
-    font-size: 18px;
-  }
 
   .promo-panel {
     grid-template-columns: 1fr;
