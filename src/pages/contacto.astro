@@ -2,4 +2,60 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { site } from '../data/site';
 ---
-<BaseLayout title="JNSTUDIO | Contacto"><section class="page reveal"><div class="contact-layout"><div class="contact-copy"><p class="eyebrow">JNSTUDIO / Abrimos canal</p><h2>Cuéntanos<br><em>qué estás haciendo.</em></h2><p>Cuanto más nos cuentes, mejor podremos ayudarte. Respondemos personalmente en menos de 24 horas.</p><div class="contact-meta"><div><span>Email principal</span><strong>{site.contactEmail}</strong></div><div><span>Disponibilidad</span><strong>Madrid / Online · L—V</strong></div></div></div><form action={`mailto:${site.contactEmail}`} method="post" enctype="text/plain"><div class="field"><label for="name">Nombre</label><input id="name" name="name" required placeholder="Tu nombre" /></div><div class="field"><label for="email">Email</label><input id="email" type="email" name="email" required placeholder="tu@email.com" /></div><div class="field"><label for="phone">Teléfono</label><input id="phone" name="phone" placeholder="Opcional" /></div><div class="field"><label for="service">Servicio</label><select id="service" name="service"><option>Selecciona una opción</option><option>Producción musical</option><option>Mezcla y Mastering</option><option>Sesión de estudio</option><option>Desarrollo web</option><option>Consultoría</option></select></div><div class="field full"><label for="message">Observaciones</label><textarea id="message" name="message" placeholder="Háblanos de tu proyecto"></textarea></div><label class="check"><input type="checkbox" required /> He leído y acepto la política de privacidad.</label><button class="button button-primary" type="submit">Enviar mensaje <span>↗</span></button></form></div></section></BaseLayout>
+<BaseLayout title="JNSTUDIO | Contacto">
+  <section class="page reveal">
+    <div class="contact-layout">
+      <div class="contact-copy">
+        <p class="eyebrow">JNSTUDIO / Abrimos canal</p>
+        <h2>Cuéntanos<br><em>qué estás haciendo.</em></h2>
+        <p>Cuanto más nos cuentes, mejor podremos ayudarte. Respondemos personalmente en menos de 24 horas.</p>
+        <div class="contact-meta">
+          <div><span>Email principal</span><strong>{site.contactEmail}</strong></div>
+          <div><span>Ubicación</span><strong>{site.city}</strong></div>
+          <div><span>Horario</span><strong>10:00–14:00<br />16:00–20:00</strong></div>
+        </div>
+      </div>
+      <form id="contact-form" action={site.formEndpoint} method="post">
+        <input type="hidden" name="_subject" value="Nuevo contacto desde JNSTUDIO" />
+        <input type="hidden" name="_replyto" id="replyto" />
+        <div class="field"><label for="name">Nombre</label><input id="name" name="name" required placeholder="Tu nombre" /></div>
+        <div class="field"><label for="email">Email</label><input id="email" type="email" name="email" required placeholder="tu@email.com" /></div>
+        <div class="field"><label for="phone">Teléfono</label><input id="phone" name="phone" placeholder="Opcional" /></div>
+        <div class="field"><label for="service">Servicio</label><select id="service" name="service"><option>Selecciona una opción</option><option>Producción musical</option><option>Mezcla y Mastering</option><option>Sesión de estudio</option><option>Desarrollo web</option><option>Consultoría</option></select></div>
+        <div class="field full"><label for="message">Observaciones</label><textarea id="message" name="message" placeholder="Háblanos de tu proyecto"></textarea></div>
+        <label class="check"><input type="checkbox" required /> He leído y acepto la política de privacidad.</label>
+        <button class="button button-primary" type="submit">Enviar mensaje <span>↗</span></button>
+        <p class="form-status" id="form-status" role="status"></p>
+      </form>
+    </div>
+  </section>
+  <script>
+    const contactForm = document.querySelector<HTMLFormElement>('#contact-form');
+    const contactStatus = document.querySelector<HTMLElement>('#form-status');
+    const contactEmail = document.querySelector<HTMLInputElement>('#email');
+    const replyTo = document.querySelector<HTMLInputElement>('#replyto');
+
+    contactForm?.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      if (!contactStatus || !contactEmail || !replyTo) return;
+      replyTo.value = contactEmail.value;
+      if (contactForm.action.includes('REEMPLAZAR_CON_ID')) {
+        contactStatus.textContent = 'El formulario está preparado. Falta conectar el servicio de envío para activarlo.';
+        return;
+      }
+      contactStatus.textContent = 'Enviando...';
+      try {
+        const response = await fetch(contactForm.action, {
+          method: 'POST',
+          body: new FormData(contactForm),
+          headers: { Accept: 'application/json' }
+        });
+        if (!response.ok) throw new Error('No se pudo enviar el formulario');
+        contactForm.reset();
+        contactStatus.textContent = 'Mensaje enviado. Te responderemos pronto.';
+      } catch {
+        contactStatus.textContent = 'No se ha podido enviar ahora. Escríbenos a oficinajaviernaranjo@gmail.com.';
+      }
+    });
+  </script>
+</BaseLayout>

@@ -17,10 +17,20 @@ import { tariffs } from '../data/site';
     <h3>{tariff.name}</h3>
     <p>{tariff.description}</p>
     <div class="price">{tariff.price}</div>
-    <a class="button button-ghost" href="/contacto/">Solicitar información <span>↗</span></a>
+    <div class="tariff-actions">
+      <button class="button button-ghost tariff-info" type="button" data-details={tariff.details}>Más información <span>+</span></button>
+      <button class="button button-primary" type="button" data-add-cart data-name={tariff.name} data-price={tariff.numericPrice}>Añadir al carrito <span>+</span></button>
+    </div>
+    <a class="pdf-link" href={tariff.pdf} target="_blank" rel="noreferrer">Descargar PDF de este servicio ↗</a>
   </article>)}
 </div>
+<div class="details-dialog" id="details-dialog" aria-hidden="true"><div class="details-dialog-inner"><button class="details-close" type="button" aria-label="Cerrar información">×</button><p class="eyebrow">Detalle del servicio</p><h3 id="details-title">Más información</h3><p id="details-copy"></p><a class="button button-primary" href="/contacto/">Consultar este servicio <span>↗</span></a></div></div>
 <script>
   const filter = document.querySelector<HTMLSelectElement>('#tariff-filter');
   filter?.addEventListener('change', () => document.querySelectorAll<HTMLElement>('[data-category]').forEach((card) => { card.style.display = filter.value === 'todas' || card.dataset.category === filter.value ? '' : 'none'; }));
+  const dialog = document.querySelector<HTMLElement>('#details-dialog');
+  const closeDialog = () => dialog?.classList.remove('open');
+  document.querySelectorAll<HTMLButtonElement>('.tariff-info').forEach((button) => button.addEventListener('click', () => { const card = button.closest('.price-card'); const title = card?.querySelector('h3')?.textContent || 'Servicio'; const titleTarget = document.querySelector('#details-title'); const copyTarget = document.querySelector('#details-copy'); if (titleTarget) titleTarget.textContent = title; if (copyTarget) copyTarget.textContent = button.dataset.details || ''; dialog?.classList.add('open'); }));
+  document.querySelector('.details-close')?.addEventListener('click', closeDialog);
+  dialog?.addEventListener('click', (event) => { if (event.target === dialog) closeDialog(); });
 </script>

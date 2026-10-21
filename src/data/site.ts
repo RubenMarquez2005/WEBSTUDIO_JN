@@ -1,6 +1,9 @@
 export const site = {
   name: 'JNSTUDIO',
   contactEmail: 'oficinajaviernaranjo@gmail.com',
+  city: 'Sevilla',
+  hours: 'Lunes a viernes · 10:00–14:00 y 16:00–20:00',
+  formEndpoint: 'https://formspree.io/f/REEMPLAZAR_CON_ID',
   instagram: 'https://www.instagram.com/javiernaranjoficial/',
   tiktok: 'https://www.tiktok.com/@javiernaranjoo',
   facebook: 'https://www.facebook.com/javiernaranjofficial/?locale=es_ES',
@@ -18,9 +21,9 @@ export const navigation = [
 ] as const;
 
 export const tariffs = [
-  { category: 'musica', area: 'Música y producción', name: 'Mezcla y Mastering', description: 'Una mezcla que respira y un master listo para cualquier plataforma.', price: '200€' },
-  { category: 'musica', area: 'Música y producción', name: 'Composición musical', description: 'Construimos la canción desde la emoción, la melodía y la dirección.', price: '300€' },
-  { category: 'grabacion', area: 'Grabación', name: 'Sesión de estudio', description: 'Media jornada para concentrarte en la interpretación y salir con material real.', price: '140€' },
-  { category: 'consultoria', area: 'Consultoría', name: 'Consulta privada', description: 'Una hora para desbloquear decisiones de producción, carrera o lanzamiento.', price: '40€' },
-  { category: 'web', area: 'Desarrollo web', name: 'Web para artistas', description: 'Una presencia digital diseñada alrededor de tu música y tu identidad.', price: 'A consultar' }
+  { category: 'musica', area: 'Música y producción', name: 'Mezcla y Mastering', description: 'Una mezcla que respira y un master listo para cualquier plataforma.', details: 'Edición, balance, profundidad, limpieza, loudness final y entrega preparada para plataformas digitales.', price: '200€', numericPrice: 200, pdf: '/recursos/tarifas/tarifa-mezcla-mastering.pdf' },
+  { category: 'musica', area: 'Música y producción', name: 'Composición musical', description: 'Construimos la canción desde la emoción, la melodía y la dirección.', details: 'Composición, estructura, armonía, melodía y orientación creativa para llevar tu idea a una canción completa.', price: '300€', numericPrice: 300, pdf: '/recursos/tarifas/tarifa-composicion-musical.pdf' },
+  { category: 'grabacion', area: 'Grabación', name: 'Sesión de estudio', description: 'Media jornada para concentrarte en la interpretación y salir con material real.', details: 'Sesión de media jornada. La jornada completa queda pendiente de confirmar.', price: '140€', numericPrice: 140, pdf: '/recursos/tarifas/tarifa-sesion-estudio.pdf' },
+  { category: 'consultoria', area: 'Consultoría', name: 'Consulta privada', description: 'Una hora para desbloquear decisiones de producción, carrera o lanzamiento.', details: 'Consulta individual sobre producción, estrategia, lanzamiento, presencia digital o dirección artística.', price: '40€', numericPrice: 40, pdf: '/recursos/tarifas/tarifa-consulta-privada.pdf' },
+  { category: 'web', area: 'Desarrollo web', name: 'Web para artistas', description: 'Una presencia digital diseñada alrededor de tu música y tu identidad.', details: 'Diseño y desarrollo de una web para artista, portfolio, lanzamiento o estudio. Presupuesto personalizado.', price: 'A consultar', numericPrice: 0, pdf: '/recursos/tarifas/tarifa-desarrollo-web.pdf' }
 ] as const;

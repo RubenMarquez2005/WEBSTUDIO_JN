@@ -11,6 +11,12 @@ const currentPath = Astro.url.pathname;
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
     <meta name="description" content={description} />
+    <meta name="theme-color" content="#0d0d0f" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="JNSTUDIO" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <link rel="canonical" href={`https://javiernaranjomusic.com${Astro.url.pathname}`} />
     <title>{title}</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous" />
@@ -40,15 +46,30 @@ const currentPath = Astro.url.pathname;
       <div class="footer-top">
         <div><a class="brand footer-brand" href="/"><span class="brand-mark">JN</span><span><b>JN</b>STUDIO</span></a><p class="footer-intro">Ideas que suenan. Historias que permanecen.</p></div>
         <div><p class="footer-label">Explora</p>{navigation.slice(1, 4).map((item) => <a href={item.href}>{item.label}</a>)}</div>
-        <div><p class="footer-label">Contacto</p><a href={`mailto:${site.contactEmail}`}>{site.contactEmail}</a><a href="/contacto/">Abrir conversación</a></div>
+        <div><p class="footer-label">Contacto</p><a href={`mailto:${site.contactEmail}`}>{site.contactEmail}</a><span class="footer-meta">{site.city} · {site.hours}</span><a href="/contacto/">Abrir conversación</a></div>
         <div><p class="footer-label">Síguenos</p><div class="footer-socials"><SocialIcon network="instagram" href={site.instagram} label="Instagram" /><SocialIcon network="tiktok" href={site.tiktok} label="TikTok" /><SocialIcon network="facebook" href={site.facebook} label="Facebook" /><SocialIcon network="youtube" href={site.youtube} label="YouTube" /><SocialIcon network="portfolio" href={site.portfolio} label="Portfolio" /></div></div>
       </div>
-      <div class="footer-bottom"><span>© 2026 JNSTUDIO. Todos los derechos reservados.</span><a href="/privacidad/">Privacidad</a><span>Madrid / Online</span></div>
+      <div class="footer-bottom"><span>© 2026 JNSTUDIO. Todos los derechos reservados.</span><a href="/privacidad/">Privacidad</a><span>Sevilla / Online</span></div>
     </footer>
+    <aside class="cart-drawer" id="cart-drawer" aria-hidden="true" aria-labelledby="cart-title">
+      <div class="cart-drawer-head"><div><p class="eyebrow">Tu selección</p><h2 id="cart-title">Carrito</h2></div><button class="cart-close" id="cart-close" type="button" aria-label="Cerrar carrito">×</button></div>
+      <div id="cart-items"><p class="cart-empty">Todavía no has añadido ningún servicio.</p></div>
+      <div class="cart-total"><span>Total</span><strong id="cart-total">0€</strong></div>
+      <a class="button button-primary full-width" href="/contacto/">Solicitar contratación <span>↗</span></a>
+    </aside>
+    <div class="cart-backdrop" id="cart-backdrop"></div>
     <div class="cursor-glow" id="cursor-glow" aria-hidden="true"></div>
     <script is:inline>
       const menu = document.querySelector('#menu-toggle');
       menu?.addEventListener('click', () => document.querySelector('.main-nav')?.classList.toggle('open'));
+      const cartDrawer = document.querySelector('#cart-drawer');
+      const cartBackdrop = document.querySelector('#cart-backdrop');
+      const cartItems = JSON.parse(localStorage.getItem('jnstudio-cart') || '[]');
+      const renderCart = () => { const target = document.querySelector('#cart-items'); const total = document.querySelector('#cart-total'); if (!target || !total) return; target.innerHTML = cartItems.length ? cartItems.map((item, index) => `<div class="cart-item"><div><strong>${item.name}</strong><small>${item.price === 0 ? 'Precio a consultar' : `${item.price}€`}</small></div><button type="button" data-remove-cart="${index}" aria-label="Quitar ${item.name}">×</button></div>`).join('') : '<p class="cart-empty">Todavía no has añadido ningún servicio.</p>'; total.textContent = `${cartItems.reduce((sum, item) => sum + item.price, 0)}€`; document.querySelectorAll('[data-remove-cart]').forEach((button) => button.addEventListener('click', () => { cartItems.splice(Number(button.dataset.removeCart), 1); localStorage.setItem('jnstudio-cart', JSON.stringify(cartItems)); renderCart(); })); };
+      const openCart = () => { cartDrawer?.classList.add('open'); cartBackdrop?.classList.add('open'); cartDrawer?.setAttribute('aria-hidden', 'false'); renderCart(); };
+      const closeCart = () => { cartDrawer?.classList.remove('open'); cartBackdrop?.classList.remove('open'); cartDrawer?.setAttribute('aria-hidden', 'true'); };
+      document.querySelector('#cart-close')?.addEventListener('click', closeCart); cartBackdrop?.addEventListener('click', closeCart);
+      document.addEventListener('click', (event) => { const button = event.target.closest('[data-add-cart]'); if (!button) return; cartItems.push({ name: button.dataset.name, price: Number(button.dataset.price || 0) }); localStorage.setItem('jnstudio-cart', JSON.stringify(cartItems)); openCart(); });
       const scrollTop = document.querySelector('#scroll-top');
       const updateScrollTop = () => scrollTop?.classList.toggle('visible', window.scrollY > 360);
       window.addEventListener('scroll', updateScrollTop, { passive: true });

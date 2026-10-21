@@ -34,11 +34,15 @@ npm run build
 - Email visible: `oficinajaviernaranjo@gmail.com`.
 - Instagram, TikTok, Facebook, YouTube y portfolio están centralizados en `src/data/site.ts`.
 - Los destinatarios internos y copias ocultas no deben exponerse en el frontend; se conectarán en el backend o servicio de correo.
+- Ubicación: Sevilla.
+- Horario: lunes a viernes, 10:00–14:00 y 16:00–20:00.
 
 ## Pendiente
 
 - Sustituir las imágenes provisionales por fotografías definitivas del estudio y del equipo.
 - Conectar el formulario a un servicio de correo real con destinatarios, copias ocultas y protección antispam. El correo visible y principal es `oficinajaviernaranjo@gmail.com`; los demás destinatarios deben quedar en backend.
+- Sustituir `REEMPLAZAR_CON_ID` en `src/data/site.ts` por el identificador real de Formspree para activar el envío desde la web.
+- Para obtenerlo: crea un formulario en Formspree, copia la URL `https://formspree.io/f/tu-id` y sustituye el valor de `formEndpoint`. No hace falta poner claves secretas en el frontend.
 - Integrar una pasarela real de pago y generación de facturas.
 - Completar las tarifas del resto de servicios cuando JNSTUDIO las facilite.
 - Revisar los textos legales antes de publicar.
