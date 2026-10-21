@@ -18,11 +18,13 @@ import { site } from '../data/site';
       <form id="contact-form" action={site.formEndpoint} method="post">
         <input type="hidden" name="_subject" value="Nuevo contacto desde JNSTUDIO" />
         <input type="hidden" name="_replyto" id="replyto" />
+        <input type="hidden" name="cart" id="cart-payload" />
         <div class="field"><label for="name">Nombre</label><input id="name" name="name" required placeholder="Tu nombre" /></div>
         <div class="field"><label for="email">Email</label><input id="email" type="email" name="email" required placeholder="tu@email.com" /></div>
         <div class="field"><label for="phone">Teléfono</label><input id="phone" name="phone" placeholder="Opcional" /></div>
         <div class="field"><label for="service">Servicio o promoción</label><select id="service" name="service"><option>Selecciona una opción</option><option>Producción musical</option><option>Mezcla y Mastering</option><option>Sesión de estudio</option><option>Promoción musical / bono</option><option>Desarrollo web</option><option>Consultoría</option></select></div>
         <div class="field full"><label for="message">Observaciones</label><textarea id="message" name="message" placeholder="Háblanos de tu proyecto"></textarea></div>
+        <div class="selected-services" id="selected-services" hidden></div>
         <label class="check"><input type="checkbox" required /> He leído y acepto la política de privacidad.</label>
         <button class="button button-primary" type="submit">Enviar mensaje <span>↗</span></button>
         <p class="form-status" id="form-status" role="status"></p>
@@ -34,6 +36,14 @@ import { site } from '../data/site';
     const contactStatus = document.querySelector<HTMLElement>('#form-status');
     const contactEmail = document.querySelector<HTMLInputElement>('#email');
     const replyTo = document.querySelector<HTMLInputElement>('#replyto');
+    const cartPayload = document.querySelector<HTMLInputElement>('#cart-payload');
+    const selectedServices = document.querySelector<HTMLElement>('#selected-services');
+    const selectedCart = JSON.parse(localStorage.getItem('jnstudio-cart') || '[]');
+    if (selectedCart.length && cartPayload && selectedServices) {
+      cartPayload.value = JSON.stringify(selectedCart);
+      selectedServices.hidden = false;
+      selectedServices.innerHTML = `<span>Servicios seleccionados</span><strong>${selectedCart.map((item: { name: string; price: number }) => `${item.name} (${item.price ? `${item.price}€` : 'a consultar'})`).join(' · ')}</strong>`;
+    }
 
     contactForm?.addEventListener('submit', async (event) => {
       event.preventDefault();

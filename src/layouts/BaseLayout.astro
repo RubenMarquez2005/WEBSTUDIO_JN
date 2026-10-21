@@ -37,6 +37,7 @@ const currentPath = Astro.url.pathname;
         <SocialIcon network="instagram" href={site.instagram} label="Instagram" />
         <SocialIcon network="tiktok" href={site.tiktok} label="TikTok" />
         <SocialIcon network="youtube" href={site.youtube} label="YouTube" />
+        <button class="cart-trigger" id="cart-trigger" type="button" aria-label="Abrir carrito"><span aria-hidden="true">▣</span> Carrito <b id="cart-count">0</b></button>
         <button class="menu-toggle" id="menu-toggle" aria-label="Abrir menú">☰</button>
       </div>
     </header>
@@ -65,11 +66,14 @@ const currentPath = Astro.url.pathname;
       const cartDrawer = document.querySelector('#cart-drawer');
       const cartBackdrop = document.querySelector('#cart-backdrop');
       const cartItems = JSON.parse(localStorage.getItem('jnstudio-cart') || '[]');
-      const renderCart = () => { const target = document.querySelector('#cart-items'); const total = document.querySelector('#cart-total'); if (!target || !total) return; target.innerHTML = cartItems.length ? cartItems.map((item, index) => `<div class="cart-item"><div><strong>${item.name}</strong><small>${item.price === 0 ? 'Precio a consultar' : `${item.price}€`}</small></div><button type="button" data-remove-cart="${index}" aria-label="Quitar ${item.name}">×</button></div>`).join('') : '<p class="cart-empty">Todavía no has añadido ningún servicio.</p>'; total.textContent = `${cartItems.reduce((sum, item) => sum + item.price, 0)}€`; document.querySelectorAll('[data-remove-cart]').forEach((button) => button.addEventListener('click', () => { cartItems.splice(Number(button.dataset.removeCart), 1); localStorage.setItem('jnstudio-cart', JSON.stringify(cartItems)); renderCart(); })); };
+      const renderCart = () => { const target = document.querySelector('#cart-items'); const total = document.querySelector('#cart-total'); if (!target || !total) return; target.innerHTML = cartItems.length ? cartItems.map((item, index) => `<div class="cart-item"><div><strong>${item.name}</strong><small>${item.price === 0 ? 'Precio a consultar' : `${item.price}€`}</small></div><button type="button" data-remove-cart="${index}" aria-label="Quitar ${item.name}">×</button></div>`).join('') : '<p class="cart-empty">Todavía no has añadido ningún servicio.</p>'; total.textContent = `${cartItems.reduce((sum, item) => sum + item.price, 0)}€`; document.querySelectorAll('[data-remove-cart]').forEach((button) => button.addEventListener('click', () => { cartItems.splice(Number(button.dataset.removeCart), 1); localStorage.setItem('jnstudio-cart', JSON.stringify(cartItems)); updateCartCount(); renderCart(); })); };
       const openCart = () => { cartDrawer?.classList.add('open'); cartBackdrop?.classList.add('open'); cartDrawer?.setAttribute('aria-hidden', 'false'); renderCart(); };
       const closeCart = () => { cartDrawer?.classList.remove('open'); cartBackdrop?.classList.remove('open'); cartDrawer?.setAttribute('aria-hidden', 'true'); };
+      const updateCartCount = () => { const counter = document.querySelector('#cart-count'); if (counter) counter.textContent = String(cartItems.length); };
+      document.querySelector('#cart-trigger')?.addEventListener('click', openCart);
       document.querySelector('#cart-close')?.addEventListener('click', closeCart); cartBackdrop?.addEventListener('click', closeCart);
-      document.addEventListener('click', (event) => { const button = event.target.closest('[data-add-cart]'); if (!button) return; cartItems.push({ name: button.dataset.name, price: Number(button.dataset.price || 0) }); localStorage.setItem('jnstudio-cart', JSON.stringify(cartItems)); openCart(); });
+      document.addEventListener('click', (event) => { const button = event.target.closest('[data-add-cart]'); if (!button) return; cartItems.push({ name: button.dataset.name, price: Number(button.dataset.price || 0), category: button.dataset.category || 'general' }); localStorage.setItem('jnstudio-cart', JSON.stringify(cartItems)); updateCartCount(); openCart(); });
+      updateCartCount();
       const scrollTop = document.querySelector('#scroll-top');
       const updateScrollTop = () => scrollTop?.classList.toggle('visible', window.scrollY > 360);
       window.addEventListener('scroll', updateScrollTop, { passive: true });

@@ -45,8 +45,9 @@ npm run build
 - Configurar en Netlify estas variables privadas: `RESEND_API_KEY`, `EMAIL_FROM`, `CONTACT_EMAIL` y `WEB_DEVELOPMENT_EMAIL`.
 - `CONTACT_EMAIL` debe ser `oficinajaviernaranjo@gmail.com`.
 - `WEB_DEVELOPMENT_EMAIL` debe ser `rumarquez05@gmail.com`.
+- `MUSIC_EMAIL`, `RECORDING_EMAIL` y `CONSULTING_EMAIL` deben contener los responsables reales de esas áreas.
 - `EMAIL_FROM` debe usar un remitente de un dominio verificado en Resend.
-- La función envía todos los contactos al correo principal y añade el correo informático únicamente para servicios web o informática.
+- La función envía todos los contactos al correo principal y añade cada responsable según los servicios incluidos en el carrito. Las direcciones permanecen solo en variables privadas.
 - Integrar una pasarela real de pago y generación de facturas.
 - Completar las tarifas del resto de servicios cuando JNSTUDIO las facilite.
 - Revisar los textos legales antes de publicar.
