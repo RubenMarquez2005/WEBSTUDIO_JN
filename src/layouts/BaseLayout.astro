@@ -34,6 +34,7 @@ const currentPath = Astro.url.pathname;
         <button class="menu-toggle" id="menu-toggle" aria-label="Abrir menú">☰</button>
       </div>
     </header>
+    <button class="scroll-top" id="scroll-top" type="button" aria-label="Volver al inicio de la página" title="Volver arriba">↑</button>
     <main><slot /></main>
     <footer class="site-footer">
       <div class="footer-top">
@@ -48,6 +49,11 @@ const currentPath = Astro.url.pathname;
     <script is:inline>
       const menu = document.querySelector('#menu-toggle');
       menu?.addEventListener('click', () => document.querySelector('.main-nav')?.classList.toggle('open'));
+      const scrollTop = document.querySelector('#scroll-top');
+      const updateScrollTop = () => scrollTop?.classList.toggle('visible', window.scrollY > 360);
+      window.addEventListener('scroll', updateScrollTop, { passive: true });
+      updateScrollTop();
+      scrollTop?.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
       document.addEventListener('mousemove', (event) => { const cursor = document.querySelector('#cursor-glow'); if (cursor) { cursor.style.left = `${event.clientX}px`; cursor.style.top = `${event.clientY}px`; } });
       setInterval(() => { const note = document.createElement('span'); note.className = 'music-note'; note.textContent = Math.random() > .5 ? '♪' : '♫'; note.style.left = `${Math.random() * 100}vw`; document.body.append(note); setTimeout(() => note.remove(), 9000); }, 1800);
     </script>

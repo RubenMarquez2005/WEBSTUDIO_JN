@@ -14,6 +14,43 @@ main,
   z-index: 2;
 }
 
+.site-header {
+  position: fixed;
+  z-index: 10;
+}
+
+.scroll-top {
+  position: fixed;
+  right: 28px;
+  bottom: 28px;
+  z-index: 12;
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border: 1px solid var(--coral);
+  border-radius: 50%;
+  background: rgba(25, 25, 29, .86);
+  color: var(--paper);
+  font-size: 22px;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(12px);
+  transition: opacity .25s, transform .25s, background .25s;
+  backdrop-filter: blur(12px);
+}
+
+.scroll-top.visible {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+.scroll-top:hover {
+  background: var(--coral);
+  box-shadow: 0 0 24px rgba(169, 77, 87, .45);
+}
+
 /* Astro no necesita esperar a un observer para mostrar el contenido inicial. */
 .reveal {
   opacity: 1;
@@ -174,6 +211,11 @@ main,
 }
 
 @media (max-width: 520px) {
+  .scroll-top {
+    right: 18px;
+    bottom: 18px;
+  }
+
   .about-stats {
     grid-template-columns: 1fr;
   }
