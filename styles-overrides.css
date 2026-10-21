@@ -256,6 +256,85 @@ main,
   text-transform: uppercase;
 }
 
+.cart-notes-trigger {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  width: 100%;
+  margin: 28px 0 12px;
+  padding: 14px 15px;
+  border: 1px dashed rgba(234, 231, 229, .28);
+  background: transparent;
+  color: var(--muted);
+  text-align: left;
+  font-size: 12px;
+}
+
+.cart-notes-trigger:hover {
+  border-color: var(--coral);
+  color: var(--paper);
+}
+
+.cart-notes-trigger span {
+  color: var(--coral);
+  font-size: 18px;
+}
+
+.cart-notes-dialog {
+  position: fixed;
+  inset: 0;
+  z-index: 40;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  background: rgba(13, 13, 15, .8);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .2s;
+  backdrop-filter: blur(14px);
+}
+
+.cart-notes-dialog.open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.cart-notes-dialog-inner {
+  position: relative;
+  width: min(560px, 100%);
+  padding: 38px;
+  background: var(--panel);
+  border: 1px solid var(--coral);
+  box-shadow: 0 20px 70px rgba(0, 0, 0, .5);
+}
+
+.cart-notes-dialog-inner h2 {
+  margin-bottom: 14px;
+  font-size: 36px;
+}
+
+.cart-notes-dialog-inner p:not(.eyebrow) {
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+.cart-notes-dialog-inner textarea {
+  min-height: 130px;
+  margin: 18px 0;
+  padding: 14px;
+  border: 1px solid var(--line);
+  background: rgba(13, 13, 15, .5);
+}
+
+.cart-notes-close {
+  position: absolute;
+  top: 14px;
+  right: 20px;
+  border: 0;
+  background: transparent;
+  font-size: 28px;
+}
+
 .cart-observation {
   display: block;
   width: 100%;
@@ -360,6 +439,71 @@ main,
 .promo-points .button {
   justify-self: start;
   margin-top: 12px;
+}
+
+.promo-old-price,
+.promo-final {
+  display: grid;
+  gap: 5px;
+}
+
+.promo-old-price span,
+.promo-final span,
+.promo-final small {
+  color: var(--muted);
+  font: 10px 'DM Mono', monospace;
+  text-transform: uppercase;
+}
+
+.promo-old-price s {
+  color: var(--muted);
+  font: 24px 'Space Grotesk', sans-serif;
+}
+
+.promo-final strong {
+  color: var(--paper);
+  font: 700 48px 'Space Grotesk', sans-serif;
+  line-height: .95;
+}
+
+.promo-terms {
+  color: var(--muted);
+  font: 10px 'DM Mono', monospace;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.promo-coming {
+  margin-top: 70px;
+  padding-top: 35px;
+  border-top: 1px solid var(--line);
+}
+
+.promo-coming h3 {
+  max-width: 620px;
+  margin-bottom: 24px;
+  font-size: 28px;
+}
+
+.promo-example {
+  display: grid;
+  grid-template-columns: 1fr 1.5fr auto;
+  gap: 24px;
+  align-items: center;
+  padding: 22px;
+  border: 1px solid var(--line);
+  background: rgba(25, 25, 29, .65);
+}
+
+.promo-example span {
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.promo-example b {
+  color: var(--coral);
+  font: 12px 'DM Mono', monospace;
 }
 
 .cart-item {
@@ -621,6 +765,15 @@ main,
 
   .promo-panel {
     padding: 24px;
+  }
+
+  .promo-example {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .cart-notes-dialog-inner {
+    padding: 26px 20px;
   }
 
   .details-dialog-inner,

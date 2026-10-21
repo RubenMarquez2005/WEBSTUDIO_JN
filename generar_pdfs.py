@@ -9,6 +9,7 @@ OUTPUT = Path('public/recursos/tarifas')
 OUTPUT.mkdir(parents=True, exist_ok=True)
 
 services = [
+    ('tarifa-produccion-musical.pdf', 'Producción Musical', '700€', 'Desarrollo de la idea, estructura, arreglos, sonido, dirección creativa y acompañamiento durante la producción.'),
     ('tarifa-mezcla-mastering.pdf', 'Mezcla y Mastering', '200€', 'Edición, balance, profundidad, limpieza, loudness final y entrega preparada para plataformas digitales.'),
     ('tarifa-composicion-musical.pdf', 'Composición musical', '300€', 'Composición, estructura, armonía, melodía y orientación creativa para llevar tu idea a una canción completa.'),
     ('tarifa-sesion-estudio.pdf', 'Sesión de estudio', '140€', 'Sesión de media jornada. La jornada completa queda pendiente de confirmar.'),

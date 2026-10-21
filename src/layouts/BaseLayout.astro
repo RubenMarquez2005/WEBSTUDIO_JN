@@ -56,13 +56,13 @@ const currentPath = Astro.url.pathname;
       <div class="cart-drawer-head"><div><p class="eyebrow">Tu selección</p><h2 id="cart-title">Carrito</h2></div><button class="cart-close" id="cart-close" type="button" aria-label="Cerrar carrito">×</button></div>
       <div id="cart-items"><p class="cart-empty">Todavía no has añadido ningún servicio.</p></div>
       <div class="cart-total"><span>Total</span><strong id="cart-total">0€</strong></div>
-      <label class="cart-observation-label" for="cart-observation">Indicaciones para tu proyecto</label>
-      <textarea class="cart-observation" id="cart-observation" placeholder="Cuéntanos cómo quieres tu producción, referencias o necesidades..."></textarea>
+      <button class="cart-notes-trigger" id="cart-notes-trigger" type="button"><span>＋</span> Añadir indicaciones para tu proyecto</button>
       <button class="button button-primary full-width" id="cart-contract" type="button">Revisar contratación <span>↗</span></button>
       <button class="button button-ghost full-width payment-pending" id="cart-payment" type="button" disabled aria-disabled="true">Pago seguro próximamente <span>🔒</span></button>
       <p class="payment-note">El pago online se activará al conectar Stripe. Primero revisamos tu pedido y disponibilidad.</p>
     </aside>
     <div class="cart-backdrop" id="cart-backdrop"></div>
+    <div class="cart-notes-dialog" id="cart-notes-dialog" aria-hidden="true"><div class="cart-notes-dialog-inner"><button class="cart-notes-close" id="cart-notes-close" type="button" aria-label="Cerrar indicaciones">×</button><p class="eyebrow">Personaliza tu solicitud</p><h2>¿Cómo quieres tu proyecto?</h2><p>Escribe referencias, ideas de sonido o cualquier detalle que deba conocer el equipo.</p><textarea id="cart-observation" placeholder="Ejemplo: voz cercana, referencias urbanas, entrega para lanzamiento..."></textarea><button class="button button-primary full-width" id="save-cart-notes" type="button">Guardar indicaciones <span>✓</span></button></div></div>
     <div class="cursor-glow" id="cursor-glow" aria-hidden="true"></div>
     <script is:inline>
       const menu = document.querySelector('#menu-toggle');
@@ -75,7 +75,14 @@ const currentPath = Astro.url.pathname;
       const closeCart = () => { cartDrawer?.classList.remove('open'); cartBackdrop?.classList.remove('open'); cartDrawer?.setAttribute('aria-hidden', 'true'); };
       const updateCartCount = () => { const counter = document.querySelector('#cart-count'); if (counter) counter.textContent = String(cartItems.length); };
       document.querySelector('#cart-trigger')?.addEventListener('click', openCart);
-      document.querySelector('#cart-contract')?.addEventListener('click', () => { const observation = document.querySelector('#cart-observation'); localStorage.setItem('jnstudio-cart-observation', observation?.value || ''); window.location.href = '/contacto/'; });
+      const notesDialog = document.querySelector('#cart-notes-dialog');
+      const notesField = document.querySelector('#cart-observation');
+      const notesTrigger = document.querySelector('#cart-notes-trigger');
+      const closeNotes = () => { notesDialog?.classList.remove('open'); notesDialog?.setAttribute('aria-hidden', 'true'); };
+      notesTrigger?.addEventListener('click', () => { if (notesField) notesField.value = localStorage.getItem('jnstudio-cart-observation') || ''; notesDialog?.classList.add('open'); notesDialog?.setAttribute('aria-hidden', 'false'); });
+      document.querySelector('#cart-notes-close')?.addEventListener('click', closeNotes);
+      document.querySelector('#save-cart-notes')?.addEventListener('click', () => { localStorage.setItem('jnstudio-cart-observation', notesField?.value || ''); closeNotes(); });
+      document.querySelector('#cart-contract')?.addEventListener('click', () => { window.location.href = '/contacto/'; });
       document.querySelector('#cart-close')?.addEventListener('click', closeCart); cartBackdrop?.addEventListener('click', closeCart);
       document.addEventListener('click', (event) => { const button = event.target.closest('[data-add-cart]'); if (!button) return; cartItems.push({ name: button.dataset.name, price: Number(button.dataset.price || 0), category: button.dataset.category || 'general' }); localStorage.setItem('jnstudio-cart', JSON.stringify(cartItems)); updateCartCount(); openCart(); });
       updateCartCount();
