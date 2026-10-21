@@ -41,8 +41,12 @@ npm run build
 
 - Sustituir las imágenes provisionales por fotografías definitivas del estudio y del equipo.
 - Conectar el formulario a un servicio de correo real con destinatarios, copias ocultas y protección antispam. El correo visible y principal es `oficinajaviernaranjo@gmail.com`; los demás destinatarios deben quedar en backend.
-- Sustituir `REEMPLAZAR_CON_ID` en `src/data/site.ts` por el identificador real de Formspree para activar el envío desde la web.
-- Para obtenerlo: crea un formulario en Formspree, copia la URL `https://formspree.io/f/tu-id` y sustituye el valor de `formEndpoint`. No hace falta poner claves secretas en el frontend.
+- Publicar mediante Netlify para activar `netlify/functions/contact.ts`.
+- Configurar en Netlify estas variables privadas: `RESEND_API_KEY`, `EMAIL_FROM`, `CONTACT_EMAIL` y `WEB_DEVELOPMENT_EMAIL`.
+- `CONTACT_EMAIL` debe ser `oficinajaviernaranjo@gmail.com`.
+- `WEB_DEVELOPMENT_EMAIL` debe ser `rumarquez05@gmail.com`.
+- `EMAIL_FROM` debe usar un remitente de un dominio verificado en Resend.
+- La función envía todos los contactos al correo principal y añade el correo informático únicamente para servicios web o informática.
 - Integrar una pasarela real de pago y generación de facturas.
 - Completar las tarifas del resto de servicios cuando JNSTUDIO las facilite.
 - Revisar los textos legales antes de publicar.

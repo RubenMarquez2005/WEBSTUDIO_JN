@@ -3,7 +3,7 @@ export const site = {
   contactEmail: 'oficinajaviernaranjo@gmail.com',
   city: 'Sevilla',
   hours: 'Lunes a viernes · 10:00–14:00 y 16:00–20:00',
-  formEndpoint: 'https://formspree.io/f/REEMPLAZAR_CON_ID',
+  formEndpoint: '/.netlify/functions/contact',
   instagram: 'https://www.instagram.com/javiernaranjoficial/',
   tiktok: 'https://www.tiktok.com/@javiernaranjoo',
   facebook: 'https://www.facebook.com/javiernaranjofficial/?locale=es_ES',
