@@ -617,8 +617,9 @@ main,
 
 .featured-promotion {
   display: grid;
-  grid-template-columns: 1.35fr .65fr;
-  min-height: 420px;
+  grid-template-columns: minmax(0, 1.2fr) minmax(260px, .8fr);
+  min-height: 0;
+  overflow: hidden;
   border: 1px solid var(--coral);
   background: linear-gradient(120deg, rgba(135, 59, 67, .34), rgba(25, 25, 29, .82));
   box-shadow: 0 18px 60px rgba(135, 59, 67, .16);
@@ -628,7 +629,7 @@ main,
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 48px;
+  padding: clamp(32px, 4vw, 56px);
 }
 
 .promotion-badge {
@@ -642,7 +643,8 @@ main,
 }
 
 .promotion-copy h3 {
-  font-size: clamp(38px, 5vw, 70px);
+  max-width: 620px;
+  font-size: clamp(38px, 5vw, 64px);
   line-height: .92;
 }
 
@@ -653,7 +655,7 @@ main,
 
 .promotion-copy > p {
   max-width: 500px;
-  margin: 28px 0 0;
+  margin: 24px 0 0;
   color: var(--muted);
   line-height: 1.7;
 }
@@ -676,7 +678,7 @@ main,
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 42px 35px;
+  padding: clamp(30px, 3.5vw, 48px) clamp(24px, 3vw, 42px);
   border-left: 1px solid rgba(234, 231, 229, .18);
   background: rgba(13, 13, 15, .28);
 }
@@ -711,6 +713,11 @@ main,
   color: var(--paper);
   font: 700 clamp(48px, 5vw, 72px) 'Space Grotesk', sans-serif;
   line-height: .9;
+}
+
+.promotion-offer .button {
+  min-width: 0;
+  white-space: normal;
 }
 
 .promotion-offer small {
@@ -856,6 +863,10 @@ main,
     grid-template-columns: 1fr;
   }
 
+  .promotion-copy h3 {
+    max-width: 560px;
+  }
+
   .promotion-offer {
     border-top: 1px solid rgba(234, 231, 229, .18);
     border-left: 0;
@@ -897,6 +908,19 @@ main,
   .promotion-copy,
   .promotion-offer {
     padding: 28px 22px;
+  }
+
+  .promotion-copy h3 {
+    font-size: clamp(34px, 11vw, 48px);
+  }
+
+  .promotion-copy > p {
+    font-size: 13px;
+  }
+
+  .promotion-includes span {
+    padding: 7px 8px;
+    font-size: 9px;
   }
 
   .promotions-heading {
