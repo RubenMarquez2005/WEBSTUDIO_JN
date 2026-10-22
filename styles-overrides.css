@@ -790,6 +790,15 @@ main,
   gap: 18px;
 }
 
+.secondary-promotion {
+  border-color: rgba(234, 231, 229, .24);
+  background: linear-gradient(120deg, rgba(25, 25, 29, .92), rgba(135, 59, 67, .16));
+}
+
+.secondary-promotion .promotion-copy h3 {
+  font-size: clamp(34px, 4vw, 58px);
+}
+
 .promotion-offer .button {
   width: 100%;
   margin-top: 28px;
