@@ -734,8 +734,9 @@ main,
 
 .promotion-counter b {
   color: var(--paper);
-  font-size: 12px;
-  font-weight: 600;
+  font: 700 28px 'DM Mono', monospace;
+  letter-spacing: .08em;
+  text-shadow: 0 0 12px rgba(169, 77, 87, .55);
 }
 
 .promotion-offer .button {
