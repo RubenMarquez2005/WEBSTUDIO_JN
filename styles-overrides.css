@@ -850,6 +850,89 @@ main,
   text-transform: uppercase;
 }
 
+/* Las promociones comparten jerarquia y se muestran juntas para facilitar la comparacion. */
+.promotion-list {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: stretch;
+}
+
+.promotion-list .featured-promotion,
+.promotion-list .secondary-promotion {
+  grid-template-columns: 1fr;
+  min-width: 0;
+  border: 1px solid rgba(234, 231, 229, .18);
+  background: rgba(25, 25, 29, .8);
+  box-shadow: none;
+}
+
+.promotion-list .featured-promotion:hover,
+.promotion-list .secondary-promotion:hover {
+  border-color: var(--coral);
+  box-shadow: 0 16px 42px rgba(169, 77, 87, .14);
+}
+
+.promotion-list .promotion-copy {
+  padding: 30px 30px 22px;
+}
+
+.promotion-list .promotion-copy h3 {
+  max-width: 420px;
+  font-size: clamp(32px, 3vw, 48px);
+}
+
+.promotion-list .promotion-copy > p {
+  margin-top: 18px;
+  font-size: 12px;
+}
+
+.promotion-list .promotion-includes {
+  margin-top: 18px;
+}
+
+.promotion-list .promotion-offer {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-content: start;
+  gap: 5px 14px;
+  padding: 22px 30px 28px;
+  border-top: 1px solid rgba(234, 231, 229, .12);
+  border-left: 0;
+  background: rgba(13, 13, 15, .24);
+}
+
+.promotion-list .promotion-offer > * {
+  grid-column: 1;
+}
+
+.promotion-list .promotion-offer .urgency-badge,
+.promotion-list .promotion-offer .promotion-label,
+.promotion-list .promotion-offer p,
+.promotion-list .promotion-offer s,
+.promotion-list .promotion-offer strong,
+.promotion-list .promotion-offer small {
+  margin: 0;
+}
+
+.promotion-list .promotion-offer .urgency-badge {
+  margin-bottom: 12px;
+}
+
+.promotion-list .promotion-offer s {
+  font-size: 20px;
+}
+
+.promotion-list .promotion-offer strong {
+  font-size: clamp(42px, 4vw, 58px);
+}
+
+.promotion-list .promotion-offer .button {
+  margin-top: 14px;
+}
+
+.promotion-list .promotion-offer > a {
+  margin-top: 10px;
+}
+
 @media (max-width: 850px) {
   .tariffs-lead {
     margin-left: 0;
@@ -860,6 +943,10 @@ main,
   }
 
   .featured-promotion {
+    grid-template-columns: 1fr;
+  }
+
+  .promotion-list {
     grid-template-columns: 1fr;
   }
 
