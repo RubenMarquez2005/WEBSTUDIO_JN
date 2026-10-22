@@ -739,6 +739,57 @@ main,
   text-shadow: 0 0 12px rgba(169, 77, 87, .55);
 }
 
+.campaign-countdown {
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  align-items: center;
+  gap: 24px;
+  margin: 28px 0 16px;
+  padding: 17px 20px;
+  border: 1px solid rgba(169, 77, 87, .55);
+  background: rgba(135, 59, 67, .14);
+}
+
+.campaign-countdown > div {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.campaign-countdown p,
+.campaign-countdown small {
+  margin: 0;
+  color: var(--muted);
+  font: 10px 'DM Mono', monospace;
+  text-transform: uppercase;
+}
+
+.campaign-countdown strong {
+  color: var(--paper);
+  font: 700 27px 'DM Mono', monospace;
+  letter-spacing: .08em;
+  text-shadow: 0 0 14px rgba(169, 77, 87, .6);
+}
+
+.campaign-pulse {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--coral);
+  box-shadow: 0 0 0 0 rgba(169, 77, 87, .5);
+  animation: campaign-pulse 1.7s infinite;
+}
+
+@keyframes campaign-pulse {
+  70% { box-shadow: 0 0 0 9px rgba(169, 77, 87, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(169, 77, 87, 0); }
+}
+
+.promotion-list {
+  display: grid;
+  gap: 18px;
+}
+
 .promotion-offer .button {
   width: 100%;
   margin-top: 28px;
@@ -805,6 +856,14 @@ main,
     grid-template-columns: 1fr;
     gap: 20px;
   }
+
+  .campaign-countdown {
+    grid-template-columns: 1fr auto;
+  }
+
+  .campaign-countdown small {
+    grid-column: span 2;
+  }
 }
 
 @media (max-width: 520px) {
@@ -833,6 +892,15 @@ main,
 
   .promotions-heading {
     display: block;
+  }
+
+  .campaign-countdown {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .campaign-countdown small {
+    grid-column: auto;
   }
 
   .promotion-index {
